@@ -5,18 +5,19 @@ function Frame(){
 }
 
 Frame.prototype = {
-  rollFirst: function(num){
-    this._pinsRemaining -= num;
-    if (this._pinsRemaining  === 0) {
-      this._rollAgain = false;
+  roll: function(num){
+    if (this._rollAgain == true) {
+      this._pinsRemaining -= num;
+      if (this._pinsRemaining  === 0) {
+        this._rollAgain = false;
+      }
+      else {
+        this._rollAgain = true;
+      }
+    } else {
+      throw Error ("Strike, can't roll again");
     }
-    else {
-      this._rollAgain = true;
-    }
-  },
 
-  rollSecond: function(num){
-    this._pinsRemaining -= num;
   },
 
   frameScore: function(){
