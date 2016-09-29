@@ -7,7 +7,7 @@ describe("Frame", function(){
 
     it('each frame starts with 10 pins', function(){
       expect(frame1._pinsRemaining).toEqual(10);
-    })
+    });
 
     it("rollFirst can hit 4 pins and pins left are 6", function(){
       frame1.roll(4);
@@ -38,11 +38,31 @@ describe("Frame", function(){
       expect(frame1._rollAgain).toEqual(false);
     });
 
-    it("throw error if trying to rollagain on pins 10", function(){
+    it("throws error if trying to rollagain on pins 10", function(){
       frame1.roll(10);
       expect(function(){
         frame1.roll(2);
-      }).toThrowError("Strike, can't roll again");
+      }).toThrowError("Can't roll again");
+    });
+
+    it("numRolls to be 2 after 2 rolls", function(){
+      frame1.roll(3);
+      frame1.roll(3);
+      expect(frame1._numRolls).toEqual(2);
+    });
+
+    it("throws error if trying to rollagain and numRolls is 2", function(){
+      frame1.roll(10);
+      expect(function(){
+        frame1.roll(2);
+      }).toThrowError("Can't roll again");
+
+    it("_currentScore is 6 after one roll", function(){
+      frame1.roll(6);
+      expect(frame1._currentScore).toEqual(6);
+    });
+
+
     });
 
 });
